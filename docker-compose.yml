@@ -1,0 +1,19 @@
+version: '3'
+services:
+  backend:
+    image: evercoinx/faraway:nft-collection-deployer-backend
+    ports:
+      - '4000:4000'
+    networks:
+      - app-network
+  frontend:
+    image: evercoinx/faraway:nft-collection-deployer-frontend
+    ports:
+      - '8081:3000'
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
