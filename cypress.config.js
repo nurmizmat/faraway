@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const unzipper = require('unzipper');
 const metamask = require('./cypress/support/metamask');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = defineConfig({
   e2e: {
@@ -13,11 +15,11 @@ module.exports = defineConfig({
     defaultCommandTimeout: 30000,
     env: {
       baseUrl: 'http://127.0.0.1:8081/',
-      walletAddress: '0xaE92aC998572073B53B75eC47EaDDaDb94631ab0',
-      secretWords: 'reopen artwork spike inherit hobby trial sudden innocent visit smart stumble frown',
-      passwordWallet: '!Password123',
-      botID: '6225819799:AAHPiVZ6wiWCCLEna675LtSlcqepUeWGQxM',
-      chatID: '-1001918618634',
+      walletAddress: process.env.WALLET_ADDRESS,
+      walletSecret: process.env.WALLET_SECRET,
+      walletPassword: process.env.WALLET_PASSWORD,
+      botID: process.env.BOT_ID,
+      chatID: process.env.CHAT_ID,
     },
 
     setupNodeEvents(on, config) {
@@ -41,8 +43,8 @@ module.exports = defineConfig({
       });
 
       on('task', {
-        setupMetamask: async ({ secretWords, password }) => {
-          const setup = await metamask.setupMetamask({ secretWords, password });
+        setupMetamask: async ({ secret, password }) => {
+          const setup = await metamask.setupMetamask({ secret, password });
           return setup;
         },
         addNetwork: async (network) => {

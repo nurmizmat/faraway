@@ -65,58 +65,58 @@ module.exports = {
     await module.exports.closePopup()
     return true
   },
-  importWallet: async (secretWords, password) => {
-    const secretWordsArray = secretWords.split(' ')
+  importWallet: async (secret, password) => {
+    const secretArray = secret.split(' ')
     await puppeteer.waitAndClick(selectActionPageElements.importWalletButton)
     await puppeteer.waitAndClick(metametricsOptInPageElements.noThanksButton)
     // type secret words
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord0,
-      secretWordsArray[0]
+      secretArray[0]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord1,
-      secretWordsArray[1]
+      secretArray[1]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord2,
-      secretWordsArray[2]
+      secretArray[2]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord3,
-      secretWordsArray[3]
+      secretArray[3]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord4,
-      secretWordsArray[4]
+      secretArray[4]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord5,
-      secretWordsArray[5]
+      secretArray[5]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord6,
-      secretWordsArray[6]
+      secretArray[6]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord7,
-      secretWordsArray[7]
+      secretArray[7]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord8,
-      secretWordsArray[8]
+      secretArray[8]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord9,
-      secretWordsArray[9]
+      secretArray[9]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord10,
-      secretWordsArray[10]
+      secretArray[10]
     )
     await puppeteer.waitAndType(
       importWithSeedPhrasePageElements.secretWord11,
-      secretWordsArray[11]
+      secretArray[11]
     )
     // type password
     await puppeteer.waitAndType(
@@ -138,7 +138,7 @@ module.exports = {
     await module.exports.closePopup()
     return true
   },
-  setupMetamask: async ({ secretWords, password }) => {
+  setupMetamask: async ({ secret, password }) => {
     await puppeteer.init()
     await puppeteer.switchToMetamaskWindow()
     await puppeteer.metamaskWindow().waitForTimeout(1000)
@@ -147,7 +147,7 @@ module.exports = {
       null
     ) {
       await module.exports.confirmWelcomePage()
-      await module.exports.importWallet(secretWords, password)
+      await module.exports.importWallet(secret, password)
       await puppeteer.switchToCypressWindow()
       return true
     }

@@ -4,8 +4,8 @@ import page from '../support/pages/faraway/page';
 describe('Faraway - create collection and NFT', () => {
   it('Import Metamask wallet', () => {
     cy.setupMetamask(
-      Cypress.env('secretWords'),
-      Cypress.env('passwordWallet'),
+      Cypress.env('walletSecret'),
+      Cypress.env('walletPassword'),
     ).then(setupFinished => {
       expect(setupFinished).to.be.true;
     });

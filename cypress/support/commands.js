@@ -24,8 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('setupMetamask', (secretWords, password) => {
-  return cy.task('setupMetamask', { secretWords, password }, { log: false });
+Cypress.Commands.add('setupMetamask', (secret, password) => {
+  return cy.task('setupMetamask', { secret, password }, { log: false });
 });
 
 Cypress.Commands.add('addNetwork', network  => {
